@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntryBySlug } from "astro:content";
+import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
 
 // const post1 = await getEntryBySlug("blog", "post-1");
 
@@ -12,4 +12,9 @@ export async function getStaticPaths() {
     props: { post },
   }));
 }
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+const { post } = Astro.props;
 ---
