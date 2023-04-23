@@ -23,7 +23,7 @@ const post1 = await getEntryBySlug("blog", "post-1");
 				<article>
 					<h2>{post.data.title}</h2>
 					<p>{post.data.description}</p>
-					<a href={post.slug}><img src={post.data.image?.src} /></a>
+					<a href={`/blog/${post.slug}/`}><img src={post.data.image?.src} /></a>
 				</article>
 			))
 		}
