@@ -4,6 +4,7 @@ description: This is the first post
 date: 2023-04-21
 draft: false
 author: Brother Nifty
+category: life
 image: { src: /images/aws.png, alt: AWS Logo }
 ---
 

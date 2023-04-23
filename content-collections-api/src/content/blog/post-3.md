@@ -4,6 +4,7 @@ description: This is the third post
 date: 2023-04-23
 draft: false
 author: Brother Nifty
+category: codes
 image: { src: /images/aws.png, alt: AWS Logo }
 ---
 
