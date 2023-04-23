@@ -2,7 +2,7 @@
 import { getCollection, getEntryBySlug } from "astro:content";
 
 const blogPosts = await getCollection("blog", ({data}) => {
-	return !data.draft;
+	return !data.draft && data.date < new Date();
 });
 const post1 = await getEntryBySlug("blog", "post-1");
 ---
