@@ -1,7 +1,8 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntryBySlug } from "astro:content";
 
 const blogPosts = await getCollection("blog");
+const post1 = await getEntryBySlug("blog", "post-1");
 ---
 
 <html lang="en">
@@ -13,12 +14,14 @@ const blogPosts = await getCollection("blog");
 		<title>Astro</title>
 	</head>
 	<body>
+		<!-- {post1.data.title} -->
 		<h1>Astro</h1>
 		{
 			blogPosts.map((post) => (
 				<article>
 					<h2>{post.data.title}</h2>
 					<p>{post.data.description}</p>
+					<a href={post.slug}><img src={post.data.image?.src} /></a>
 				</article>
 			))
 		}
