@@ -17,6 +17,11 @@ interface Props {
   post: CollectionEntry<"blog">;
 }
 const { post } = Astro.props;
+const renderer = await post.render();
+console.log("🚀 ~ post.render()", renderer);
+// console.log("🚀 ~ post", post);
+const { Content } = await post.render();
 ---
 
-<h1>{post.data.title}</h1>
+<!-- <h1>{post.data.title}</h1> -->
+<Content />
