@@ -1,5 +1,6 @@
 ---
-import { getCollection, getEntryBySlug } from "astro:content";
+import { getCollection, getEntryBySlug, CollectionEntry } from "astro:content";
+import PostCard from "../components/PostCard.astro";
 
 // const post1 = await getEntryBySlug("blog", "post-1");
 // utils imports
@@ -8,9 +9,12 @@ const { formatBlogPosts } = await import("../js/utils.js");
 const blogPosts = await getCollection("blog", ({ data }) => {
   return !data.draft && data.date < new Date();
 });
-const formattedBlogPosts = formatBlogPosts(blogPosts, {
-  limit: 3,
-});
+const formattedBlogPosts: CollectionEntry<"blog">[] = formatBlogPosts(
+  blogPosts,
+  {
+    limit: 3,
+  }
+);
 ---
 
 <html lang="en">
@@ -25,14 +29,15 @@ const formattedBlogPosts = formatBlogPosts(blogPosts, {
     <h1>Astro</h1>
     {
       formattedBlogPosts.map((post) => (
-        <article>
-          <h2>{post.data.title}</h2>
-          <p>{post.data.description}</p>
-          <a href={`/blog/${post.slug}/`}>
-            <img src={post.data.image?.src} />
-          </a>
-          <div>category: {post.data.category}</div>
-        </article>
+        <PostCard data={post.data} url={post.slug} tagType="h3" />
+        // <article>
+        //   <h2>{post.data.title}</h2>
+        //   <p>{post.data.description}</p>
+        //   <a href={`/blog/${post.slug}/`}>
+        //     <img src={post.data.image?.src} />
+        //   </a>
+        //   <div>category: {post.data.category}</div>
+        // </article>
       ))
     }
   </body>
