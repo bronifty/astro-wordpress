@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntryBySlug, CollectionEntry } from "astro:content";
 import PostCard from "../components/PostCard.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 
 // const post1 = await getEntryBySlug("blog", "post-1");
 // utils imports
@@ -17,28 +18,18 @@ const formattedBlogPosts: CollectionEntry<"blog">[] = formatBlogPosts(
 );
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-    {
-      formattedBlogPosts.map((post) => (
-        <PostCard data={post.data} url={post.slug} tagType="h3" />
-        // <article>
-        //   <h2>{post.data.title}</h2>
-        //   <p>{post.data.description}</p>
-        //   <a href={`/blog/${post.slug}/`}>
-        //     <img src={post.data.image?.src} />
-        //   </a>
-        //   <div>category: {post.data.category}</div>
-        // </article>
-      ))
-    }
-  </body>
-</html>
+<MainLayout title="Home">
+  {
+    formattedBlogPosts.map((post) => (
+      <PostCard data={post.data} url={post.slug} tagType="h3" />
+      // <article>
+      //   <h2>{post.data.title}</h2>
+      //   <p>{post.data.description}</p>
+      //   <a href={`/blog/${post.slug}/`}>
+      //     <img src={post.data.image?.src} />
+      //   </a>
+      //   <div>category: {post.data.category}</div>
+      // </article>
+    ))
+  }
+</MainLayout>
