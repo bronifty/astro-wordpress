@@ -1,5 +1,6 @@
 ---
 // component imports
+import Link from "../components/Link.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 ---
 
@@ -15,6 +16,11 @@ import MainLayout from "../layouts/MainLayout.astro";
         voluptate dolore laboriosam earum odit labore? Quo animi impedit
         doloribus.
       </p>
+      <Link
+        href="mailto:admin@bronifty.xyz"
+        text="Email me"
+        style={"secondary"}
+      />
     </div>
   </section>
 </MainLayout>
