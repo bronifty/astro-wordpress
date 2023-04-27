@@ -1,6 +1,7 @@
 ---
 // component import
 import HeadLayout from "./HeadLayout.astro";
+import Footer from "../components/Footer.astro";
 
 // styles import
 import "../styles/global.css";
@@ -16,6 +17,7 @@ const { title = "Blog", description = "Codes and Life" } = Astro.props as Props;
   <HeadLayout {title} {description} />
   <body>
     <slot>Default Text</slot>
-    <slot name="footer">Default Footer</slot>
+
+    <Footer />
   </body>
 </html>
