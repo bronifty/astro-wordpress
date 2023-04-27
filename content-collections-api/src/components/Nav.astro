@@ -2,8 +2,11 @@
 // library imports
 import { Icon } from "astro-icon";
 
+// component imports
+import Link from "./Link.astro";
+
 // data imports
-import navData from "../data/navData.js";
+import navData from "../data/navData";
 ---
 
 <nav aria-label="Primary">
@@ -14,11 +17,20 @@ import navData from "../data/navData.js";
     <ul>
       {
         navData.map((item) => (
-          <li>
-            <a href={item.path}>{item.name}</a>
-          </li>
+          <Link
+            text={item.name}
+            href={item.path}
+            style="primary"
+            isFilled={false}
+            borderVisible={true}
+            data-navLink
+          />
         ))
       }
     </ul>
   </div>
 </nav>
+
+<script>
+  import "../js/nav.js";
+</script>
