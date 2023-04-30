@@ -4,6 +4,7 @@ import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
 
 // component import
 import MainLayout from "../../layouts/MainLayout.astro";
+import PostHeader from "../../components/PostHeader.astro";
 
 // util imports
 import { formatBlogPosts, formatDate, slugify } from "../../js/utils";
@@ -28,18 +29,16 @@ const { Content } = await post.render();
 
 <!-- <h1>{post.data.title}</h1> -->
 <MainLayout {title} {description}>
-  <div class="container">
-    <small>
-      <a href={`/category/${slugify(category)}/`} class="badge">
-        {category}
-      </a>
-    </small>
-    <h1 class="h2">{title}</h1>
-    <p>
-      by <a href={`/author/${slugify(author)}/`}>{author}</a> • {
-        formatDate(date)
-      }
-    </p>
+  <PostHeader {title} {description} {date} {category} {image} {author} />
+  <div class="post-content">
+    <div class="content">
+      <Content />
+    </div>
+    <div class="sidebar">
+      <aside class="container" aria-label="Blog categories">
+        <h2 class="h3">Blog Categories</h2>
+        <!-- <CategoryCloud /> -->
+      </aside>
+    </div>
   </div>
-  <Content />
 </MainLayout>
