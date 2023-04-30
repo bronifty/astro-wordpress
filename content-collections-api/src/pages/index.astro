@@ -13,7 +13,7 @@ const blogPosts = await getCollection("blog", ({ data }) => {
 const formattedBlogPosts: CollectionEntry<"blog">[] = formatBlogPosts(
   blogPosts,
   {
-    limit: 3,
+    limit: 99999,
   }
 );
 ---

@@ -1,13 +1,17 @@
 ---
 import { CollectionEntry, getCollection, getEntryBySlug } from "astro:content";
-
 // const post1 = await getEntryBySlug("blog", "post-1");
 
+// component import
+import MainLayout from "../../layouts/MainLayout.astro";
+
+// util imports
+import { formatBlogPosts } from "../../js/utils";
+
 export async function getStaticPaths() {
-  const blogPosts = await getCollection("blog", ({ data }) => {
-    return !data.draft && data.date < new Date();
-  });
-  return blogPosts.map((post) => ({
+  const allPosts = await getCollection("blog");
+  const formattedPosts = formatBlogPosts(allPosts);
+  return formattedPosts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
@@ -17,11 +21,12 @@ interface Props {
   post: CollectionEntry<"blog">;
 }
 const { post } = Astro.props;
-const renderer = await post.render();
-console.log("🚀 ~ post.render()", renderer);
-// console.log("🚀 ~ post", post);
+const { title, description, date, category, author, image } = post.data;
+
 const { Content } = await post.render();
 ---
 
 <!-- <h1>{post.data.title}</h1> -->
-<Content />
+<MainLayout {title} {description}>
+  <Content />
+</MainLayout>
