@@ -8,7 +8,7 @@ const blog = defineCollection({
     description: z.string(),
     date: z.date(),
     draft: z.boolean(),
-    author: z.enum(["Brother Nifty"]),
+    author: z.enum(["Brother Nifty", "Test User"]),
     category: z.enum(["codes", "life"]),
     image: z
       .object({

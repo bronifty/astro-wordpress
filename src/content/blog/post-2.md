@@ -3,7 +3,7 @@ title: Post 2
 description: This is the second post
 date: 2023-04-22
 draft: false
-author: Brother Nifty
+author: Test User
 category: codes
 image: { src: /images/post-2.jpg, alt: post-2 }
 ---
