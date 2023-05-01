@@ -2,14 +2,42 @@
 // library imports
 import { Image } from "@astrojs/image/components";
 
+// utils imports
+import { formatBlogPosts, formatDate, slugify } from "../js/utils";
+
 // component imports
 import Link from "./Link.astro";
 
-// utils imports
-import { slugify, formatDate } from "../js/utils";
-
-const { post } = Astro.props;
-console.log(post);
+const { data, slug } = Astro.props;
+const { title, description, date, author, category, image } = data;
+// console.log(title, description, date, author, category, image);
+// console.log(slug);
 ---
 
-<p>{post.data.title}</p>
+<!-- reminder: url is slug -->
+<article class="card">
+  <small>
+    <a href={`/category/${slugify(category)}/`} class="badge">
+      {category}
+    </a>
+  </small>
+  <a href={slug}>
+    <Image
+      src={image.src}
+      alt={image.alt}
+      height={350}
+      format="webp"
+      fit="cover"
+      quality={80}
+      aspectRatio="5:2"
+    />
+  </a>
+  <div class="content">
+    <h1 class="h2">{title}</h1>
+    <p>
+      by <a href={`/author/${slugify(author)}/`}>{author}</a> • {
+        formatDate(date)
+      }
+    </p>
+  </div>
+</article>

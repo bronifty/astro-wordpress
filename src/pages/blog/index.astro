@@ -13,11 +13,17 @@ const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
 // console.log(formattedPosts);
 ---
 
+<!-- reminder: url is slug -->
 <MainLayout title="About">
   <section class="container">
     <h1 class="h1">New Blog Posts</h1>
     <div class="post-container">
-      {formattedPosts.map((post) => <PostCard post={post} />)}
+      <!-- <PostCard data={formattedPosts[0].data} slug={formattedPosts[0].slug} /> -->
+      {
+        formattedPosts.map((post) => (
+          <PostCard data={post.data} slug={post.slug} />
+        ))
+      }
     </div>
   </section>
   <aside class="container" aria-label="Blog categories">
