@@ -21,7 +21,8 @@ const formattedBlogPosts: CollectionEntry<"blog">[] = formatBlogPosts(
 <MainLayout title="Home">
   {
     formattedBlogPosts.map((post) => (
-      <PostCard data={post.data} url={post.slug} tagType="h3" />
+      <h1>temp</h1>
+      // <PostCard data={post.data} url={post.slug} tagType="h3" />
       // <article>
       //   <h2>{post.data.title}</h2>
       //   <p>{post.data.description}</p>
@@ -32,5 +33,4 @@ const formattedBlogPosts: CollectionEntry<"blog">[] = formatBlogPosts(
       // </article>
     ))
   }
-  <p>hi from <span>home</span></p>
 </MainLayout>
