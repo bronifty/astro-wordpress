@@ -21,7 +21,7 @@ const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
       <!-- <PostCard data={formattedPosts[0].data} slug={formattedPosts[0].slug} /> -->
       {
         formattedPosts.map((post) => (
-          <PostCard data={post.data} slug={post.slug} />
+          <PostCard data={post.data} slug={post.slug} tagType={"h2"} />
         ))
       }
     </div>

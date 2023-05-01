@@ -8,8 +8,9 @@ import { formatBlogPosts, formatDate, slugify } from "../js/utils";
 // component imports
 import Link from "./Link.astro";
 
-const { data, slug } = Astro.props;
+const { data, slug, tagType = "h3" } = Astro.props;
 const { title, description, date, author, category, image } = data;
+const Tag = tagType;
 // console.log(title, description, date, author, category, image);
 // console.log(slug);
 ---
@@ -21,7 +22,7 @@ const { title, description, date, author, category, image } = data;
       {category}
     </a>
   </small>
-  <a href={slug}>
+  <a href={`/blog/${slug}/`}>
     <Image
       src={image.src}
       alt={image.alt}
@@ -33,11 +34,17 @@ const { title, description, date, author, category, image } = data;
     />
   </a>
   <div class="content">
-    <h1 class="h2">{title}</h1>
-    <p>
-      by <a href={`/author/${slugify(author)}/`}>{author}</a> • {
-        formatDate(date)
-      }
-    </p>
+    <div>
+      <Tag class="h3">
+        <a href={`/blog/${slug}/`}>{title}</a>
+      </Tag>
+      <small>
+        by <a href={`/author/${slugify(author)}/`}>{author}</a> • {
+          formatDate(date)
+        }
+      </small>
+    </div>
+    <p>{description}</p>
+    <Link href={`/blog/${slug}/`} style={"secondary"} text="Read Post" />
   </div>
 </article>
