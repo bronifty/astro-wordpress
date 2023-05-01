@@ -22,7 +22,7 @@ const Tag = tagType;
       {category}
     </a>
   </small>
-  <a href={`/blog/${slug}/`}>
+  <a href={`/blog/${slug}/`} aria-hidden="true" tabindex="-1">
     <Image
       src={image.src}
       alt={image.alt}

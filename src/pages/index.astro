@@ -7,31 +7,27 @@ import MainLayout from "../layouts/MainLayout.astro";
 // utils imports
 const { formatBlogPosts } = await import("../js/utils.js");
 
-const blogPosts = await getCollection("blog", ({ data }) => {
+const allPosts = await getCollection("blog", ({ data }) => {
   return !data.draft && data.date < new Date();
 });
-const formattedBlogPosts: CollectionEntry<"blog">[] = formatBlogPosts(
-  blogPosts,
-  {
-    limit: 99999,
-  }
-);
+const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts, {
+  limit: 3,
+});
 ---
 
 <MainLayout title="Home">
-  {
-    formattedBlogPosts.map((post) => (
-      <PostCard data={post.data} slug={post.slug} />
-
-      // <PostCard data={post.data} url={post.slug} tagType="h3" />
-      // <article>
-      //   <h2>{post.data.title}</h2>
-      //   <p>{post.data.description}</p>
-      //   <a href={`/blog/${post.slug}/`}>
-      //     <img src={post.data.image?.src} />
-      //   </a>
-      //   <div>category: {post.data.category}</div>
-      // </article>
-    ))
-  }
+  <section class="container">
+    <h2 class="h1">New Blog Posts</h2>
+    <div class="post-container">
+      <!-- <PostCard data={formattedPosts[0].data} slug={formattedPosts[0].slug} /> -->
+      {
+        formattedPosts.map((post) => (
+          <PostCard data={post.data} slug={post.slug} tagType={"h3"} />
+        ))
+      }
+    </div>
+  </section>
+  <aside class="container" aria-label="Blog categories">
+    <h2 class="h3">Blog Categories</h2>
+  </aside>
 </MainLayout>
