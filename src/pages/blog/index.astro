@@ -1,9 +1,30 @@
 ---
+import { getCollection, CollectionEntry } from "astro:content";
+
 // component imports
 import MainLayout from "../../layouts/MainLayout.astro";
+import { formatBlogPosts } from "../../js/utils";
+
+const allPosts = await getCollection("blog");
+const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
+console.log(formattedPosts);
 ---
 
 <MainLayout title="About">
-  <h1>Blog</h1>
-  <footer slot="footer">test</footer>
+  <section class="container">
+    <h1 class="h1">New Blog Posts</h1>
+    <div class="post-container">
+      {
+        formattedPosts.map((post) => (
+          <div class="post">
+            <h2 class="h2">{post.data.title}</h2>
+            <p class="p">{post.data.description}</p>
+            <a href={`/blog/${post.slug}`} class="btn">
+              {post.data.title}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 </MainLayout>

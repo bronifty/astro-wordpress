@@ -1,7 +1,7 @@
 ---
 title: Post 6
 description: This is the sixth post
-date: 2023-04-23
+date: 2023-04-26
 draft: false
 author: Brother Nifty
 category: codes
