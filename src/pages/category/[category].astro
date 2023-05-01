@@ -18,28 +18,35 @@ import { slugify, formatBlogPosts } from "../../js/utils";
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog");
   const formattedPosts = formatBlogPosts(allPosts);
-  return formattedPosts.map((post) => ({
-    params: { category: slugify(post.data.category) },
-    props: { name: post.data.category },
-  }));
+  const allCategories = [
+    ...new Set(formattedPosts.map((post) => post.data.category).flat()),
+  ];
+  return allCategories.map((category) => {
+    const categoryPosts = formattedPosts.filter(
+      (post) => post.data.category === category
+    );
+    return {
+      params: { category: slugify(category) },
+      props: { categoryName: category, posts: categoryPosts },
+    };
+  });
+}
+
+interface Props {
+  categoryName: string;
+  posts: CollectionEntry<"blog">[];
 }
 
 const { category } = Astro.params;
-const { name } = Astro.props;
-
-const allPosts = await getCollection("blog");
-const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
-const catPosts = formattedPosts.filter(
-  (post) => slugify(post.data.category) === category
-);
+const { categoryName, posts } = Astro.props;
 ---
 
-<MainLayout title={name}>
-  <section class="container" aria-label={`Posts about ${name}`}>
-    <h1 class="h1">Posts about <span>{name}</span></h1>
+<MainLayout title={categoryName}>
+  <section class="container" aria-label={`Posts about ${categoryName}`}>
+    <h1 class="h1">Posts about <span>{categoryName}</span></h1>
     <div class="post-container">
       {
-        catPosts.map((post) => (
+        posts.map((post) => (
           <PostCard data={post.data} slug={post.slug} tagType="h2" />
         ))
       }
