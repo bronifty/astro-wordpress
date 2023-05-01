@@ -5,7 +5,7 @@ date: 2023-04-21
 draft: false
 author: Brother Nifty
 category: life
-image: { src: /images/aws.png, alt: AWS Logo }
+image: { src: /images/post-1.jpg, alt: post-1 }
 ---
 
 ## Heading 1
