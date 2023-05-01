@@ -19,24 +19,24 @@ export async function getStaticPaths() {
   const allPosts = await getCollection("blog");
   const formattedPosts = formatBlogPosts(allPosts);
   return formattedPosts.map((post) => ({
-    params: { category: slugify(post.data.category) },
-    props: { name: post.data.category },
+    params: { author: slugify(post.data.author) },
+    props: { name: post.data.author },
   }));
 }
 
-const { category } = Astro.params;
+const { author } = Astro.params;
 const { name } = Astro.props;
 
 const allPosts = await getCollection("blog");
 const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
 const catPosts = formattedPosts.filter(
-  (post) => slugify(post.data.category) === category
+  (post) => slugify(post.data.author) === author
 );
 ---
 
 <MainLayout title={name}>
-  <section class="container" aria-label={`Posts about ${name}`}>
-    <h1 class="h1">Posts about <span>{name}</span></h1>
+  <section class="container" aria-label={`Posts by ${name}`}>
+    <h1 class="h1">Posts by <span>{name}</span></h1>
     <div class="post-container">
       {
         catPosts.map((post) => (
