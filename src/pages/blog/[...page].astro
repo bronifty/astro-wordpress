@@ -8,11 +8,12 @@ import Pagination from "../../components/Pagination.astro";
 
 // utils imports
 import { formatBlogPosts } from "../../js/utils";
+import CategoryCloud from "../../components/CategoryCloud.astro";
 
 export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection("blog");
   const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
-  return paginate(formattedPosts, { pageSize: 2 });
+  return paginate(formattedPosts, { pageSize: 3 });
 }
 
 const { page } = Astro.props;
@@ -35,5 +36,6 @@ const { page } = Astro.props;
   </section>
   <aside class="container" aria-label="Blog categories">
     <h2 class="h3">Blog Categories</h2>
+    <CategoryCloud showCount={true} />
   </aside>
 </MainLayout>
