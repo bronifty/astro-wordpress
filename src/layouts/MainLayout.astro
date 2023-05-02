@@ -6,6 +6,7 @@ import Nav from "../components/Nav.astro";
 
 // styles import
 import "../styles/global.css";
+import ShowPosts from "../components/ShowPosts";
 
 const {
   title = "My Astro Blog",
@@ -20,6 +21,7 @@ const {
   <HeadLayout {title} {description} {image} {data} {robots} />
   <body>
     <Nav />
+    <ShowPosts client:load />
     <main>
       <slot>Default Text</slot>
     </main>

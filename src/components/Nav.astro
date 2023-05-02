@@ -8,6 +8,7 @@ import Link from "./Link.astro";
 // data imports
 import navData from "../data/navData";
 import Search from "./Search.astro";
+import SearchPosts from "./SearchPosts";
 ---
 
 <nav aria-label="Primary">
@@ -15,7 +16,7 @@ import Search from "./Search.astro";
     <a href="/" data-navLink aria-label="Go home">
       <Icon name="avatar" width="60" />
     </a>
-    <Search />
+    <SearchPosts client:load />
     <ul>
       {
         navData.map((item) => (
