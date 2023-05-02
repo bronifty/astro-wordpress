@@ -4,23 +4,10 @@ import { Icon } from "astro-icon";
 
 // component imports
 import Link from "./Link.astro";
-// import Search from "./Search";
 
 // data imports
 import navData from "../data/navData";
-
-import { CollectionEntry, getCollection } from "astro:content";
-import { formatBlogPosts } from "../js/utils";
-
-const allPosts = await getCollection("blog");
-const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
-const allCategories = [
-  ...new Set(
-    formattedPosts.map((post) => post.data.category.toLowerCase()).flat()
-  ),
-];
-
-console.log(allCategories);
+import Search from "./Search.astro";
 ---
 
 <nav aria-label="Primary">
@@ -28,7 +15,7 @@ console.log(allCategories);
     <a href="/" data-navLink aria-label="Go home">
       <Icon name="avatar" width="60" />
     </a>
-    <!-- <Search /> -->
+    <Search />
     <ul>
       {
         navData.map((item) => (

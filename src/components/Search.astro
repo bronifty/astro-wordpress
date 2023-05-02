@@ -1,0 +1,64 @@
+---
+---
+
+<>
+  <input type="text" id="searchTerm" placeholder="Search by title" />
+  <div id="searchResult"></div>
+</>
+
+<script>
+  let data = [];
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/slugs.json");
+      const jsonData = await response.json();
+      data = jsonData.posts; // Assuming the fetched data contains a "posts" property
+      console.log(`data: `, data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const renderSearchResult = (result) => {
+    const searchResultElement = document.querySelector("#searchResult");
+    let htmlString = "";
+    if (result && result.length > 0) {
+      console.log(`result: `, result);
+      result.forEach((item) => {
+        htmlString += `<a href=${item.slug}>${item.title}</a><br />`;
+      });
+      searchResultElement.innerHTML = htmlString;
+    } else {
+      searchResultElement.innerHTML = ``;
+    }
+  };
+
+  const searchPosts = (searchTerm) => {
+    console.log(`searchTerm: `, searchTerm);
+    const filteredPosts = data.reduce((acc, post) => {
+      const { title, slug, description, content } = post;
+      if (
+        title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        content.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
+        acc.push(post);
+      }
+      return acc;
+    }, []);
+    console.log(`filteredPosts: `, filteredPosts);
+    renderSearchResult(filteredPosts);
+  };
+  const handleChange = (event) => {
+    const searchTerm = event.target.value;
+    if (searchTerm.trim() === "") {
+      // If the search box is empty, clear the search results
+      renderSearchResult([]);
+    } else {
+      // Otherwise, perform the search
+      searchPosts(searchTerm);
+    }
+  };
+  fetchData();
+  document.getElementById("searchTerm").addEventListener("keyup", handleChange);
+</script>
