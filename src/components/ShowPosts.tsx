@@ -13,9 +13,8 @@ const ShowPosts = () => {
           <h1>Filtered Posts</h1>
           <ul>
             {filteredPosts.get().length > 0 &&
-              filteredPosts
-                .get()
-                .map((post, idx) => (
+              filteredPosts.get().map((post, idx) => (
+                <li key={idx}>
                   <PostCard
                     title={post.title}
                     author={post.author}
@@ -24,7 +23,8 @@ const ShowPosts = () => {
                     description={post.description}
                     slug={post.slug}
                   />
-                ))}
+                </li>
+              ))}
           </ul>
         </div>
       )}
