@@ -8,17 +8,6 @@ const ShowPosts = () => {
   const filteredPostsStore = useStore(filteredPosts);
   return (
     <>
-      {/* <h1>Posts</h1>
-      {postsArray.get().map((post) => (
-        <PostCard
-          title={post.title}
-          author={post.author}
-          date={post.date}
-          description={post.description}
-          slug={post.slug}
-        />
-      ))} */}
-
       {filteredPosts.get().length > 0 && (
         <div>
           <h1>Filtered Posts</h1>
@@ -30,6 +19,7 @@ const ShowPosts = () => {
                   <PostCard
                     title={post.title}
                     author={post.author}
+                    category={post.category}
                     date={post.date}
                     description={post.description}
                     slug={post.slug}

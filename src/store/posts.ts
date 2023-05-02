@@ -4,6 +4,7 @@ import { atom, computed } from "nanostores";
 export interface Post {
   title: string;
   author: string;
+  category: string;
   date: string;
   description: string;
   content: string;
@@ -26,6 +27,7 @@ export const filteredPosts = computed(searchTerm, (search) => {
           .toLowerCase()
           .includes(searchTerm.get().toLowerCase()) ||
         post.content.toLowerCase().includes(searchTerm.get().toLowerCase()) ||
-        post.author.toLowerCase().includes(searchTerm.get().toLowerCase())
+        post.author.toLowerCase().includes(searchTerm.get().toLowerCase()) ||
+        post.category.toLowerCase().includes(searchTerm.get().toLowerCase())
     );
 });

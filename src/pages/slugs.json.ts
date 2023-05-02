@@ -8,6 +8,7 @@ export const get: APIRoute = async function get() {
     posts: posts.map((post) => ({
       title: post.data.title,
       author: post.data.author,
+      category: post.data.category,
       date: post.data.date,
       description: post.data.description,
       content: post.body,

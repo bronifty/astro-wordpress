@@ -1,7 +1,7 @@
 import React from "react";
 import { formatDate, slugify } from "../js/utils";
 
-const PostCard = ({ title, author, category, date, description, slug }) => {
+const PostCard2 = ({ title, author, category, date, description, slug }) => {
   return (
     <article className="card">
       <small>
@@ -9,6 +9,7 @@ const PostCard = ({ title, author, category, date, description, slug }) => {
           {category}
         </a>
       </small>
+
       <div className="content">
         <div>
           <h3 className="h3">
@@ -20,12 +21,12 @@ const PostCard = ({ title, author, category, date, description, slug }) => {
           </small>
         </div>
         <p>{description}</p>
-        <a href={slug}>
-          <span>Read Post</span>
+        <a href={slug} className="secondary">
+          Read Post
         </a>
       </div>
     </article>
   );
 };
 
-export default PostCard;
+export default PostCard2;
