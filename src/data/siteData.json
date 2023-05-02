@@ -1,0 +1,8 @@
+{
+  "title": "Bro Nifty Astro Blog",
+  "description": "Bro Nifty's Blog",
+  "image": {
+    "src": "/images/avatar.png",
+    "alt": "Bro Nifty Astro Blog"
+  }
+}
