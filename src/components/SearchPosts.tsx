@@ -4,7 +4,6 @@ import { Post, postsArray, searchTerm, filteredPosts } from "../store/posts";
 
 const SearchPosts = () => {
   const postsStore = useStore(postsArray);
-  const searchTermStore = useStore(searchTerm);
   const setPosts = (posts: Post[]) => postsArray.set(posts);
   const fetcher = async () => {
     const res = await fetch("/slugs.json");
@@ -12,21 +11,9 @@ const SearchPosts = () => {
     return data.posts;
   };
 
-  // const handleChange = async (event) => {
-  //   searchTermStore.set(event.target.value);
-  //   if (searchTerm.trim() === "") {
-  //     // If the search box is empty, clear the posts
-  //     setPosts([]);
-  //   } else {
-  //     // Otherwise, load all posts and filter with search term perform the search
-  //     const posts = await fetcher();
-  //     console.log("posts from fetcher in SearchPosts.tsx:", posts);
-  //     const filteredPosts = posts.filter((post) =>
-  //       post.title.toLowerCase().includes(searchTerm.toLowerCase())
-  //     );
-  //     setPosts(filteredPosts);
-  //   }
-  // };
+  const handleChange = async (event) => {
+    return searchTerm.set(event.target.value);
+  };
 
   // const filterPosts = (searchTerm: string) => {
   //   // const tempPostsArray = postsArray.get();
@@ -48,7 +35,7 @@ const SearchPosts = () => {
 
   return (
     <>
-      {/* <input type="text" placeholder="Search posts" onChange={handleChange} /> */}
+      <input type="text" placeholder="Search posts" onChange={handleChange} />
     </>
   );
 };

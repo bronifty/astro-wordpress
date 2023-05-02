@@ -11,13 +11,16 @@ export interface Post {
 export const postsArray = atom<Post[]>([]);
 export const searchTerm = atom<string>("");
 
-export const filteredPosts = computed(searchTerm, (search) =>
-  postsArray
+export const filteredPosts = computed(searchTerm, (search) => {
+  if (search === "") {
+    return postsArray.get().filter((post) => post.title === "");
+  }
+  return postsArray
     .get()
     .filter((post) =>
       post.title.toLowerCase().includes(searchTerm.get().toLowerCase())
-    )
-);
+    );
+});
 
 // sequence:
 // 1 fill postsArray with posts
