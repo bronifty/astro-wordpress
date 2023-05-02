@@ -17,8 +17,13 @@ export const filteredPosts = computed(searchTerm, (search) => {
   }
   return postsArray
     .get()
-    .filter((post) =>
-      post.title.toLowerCase().includes(searchTerm.get().toLowerCase())
+    .filter(
+      (post) =>
+        post.title.toLowerCase().includes(searchTerm.get().toLowerCase()) ||
+        post.description
+          .toLowerCase()
+          .includes(searchTerm.get().toLowerCase()) ||
+        post.content.toLowerCase().includes(searchTerm.get().toLowerCase())
     );
 });
 
