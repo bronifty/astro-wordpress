@@ -7,9 +7,8 @@ const Counter = () => {
   const count = useStore(counter);
   return (
     <>
-      <h1>Counter: {count}</h1>
-      <button id="increment" onClick={() => increment(count)}>
-        Increment
+      <button id="increment" onClick={() => counter.set(count + 1)}>
+        {count}
       </button>
       {/* <button id="increment" onClick={() => setCount(count + 1)}>
         {count}
