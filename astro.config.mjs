@@ -10,9 +10,22 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   // output: "server",
-  site: "https://blog.bronifty.xyz",
-  integrations: [mdx(), image({
-    serviceEntryPoint: "@astrojs/image/sharp"
-  }), react(), sitemap(), tailwind()]
   // adapter: vercel(),
+  site: "https://blog.bronifty.xyz",
+  integrations: [
+    mdx(),
+    image({
+      serviceEntryPoint: "@astrojs/image/sharp",
+    }),
+    react(),
+    sitemap(),
+    tailwind(),
+  ],
+  vite: {
+    server: {
+      watch: {
+        ignored: "**/node_modules/**",
+      },
+    },
+  },
 });
