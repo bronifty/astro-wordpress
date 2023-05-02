@@ -4,7 +4,7 @@ description: This is the second post
 date: 2023-04-22
 draft: false
 author: Test User
-category: codes
+category: life
 image: { src: /images/post-2.jpg, alt: post-2 }
 ---
 

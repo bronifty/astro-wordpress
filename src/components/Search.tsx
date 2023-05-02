@@ -1,38 +1,36 @@
-import { CollectionEntry, getCollection } from "astro:content";
-import { formatBlogPosts } from "../js/utils";
+import React, { useState, useEffect } from "react";
 
-export default function Search() {
-  const allPosts = async () => await getCollection("blog");
-  const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
-  const allCategories = [
-    ...new Set(
-      formattedPosts.map((post) => post.data.category.toLowerCase()).flat()
-    ),
-  ];
-  // use this with tsx and a separate <Search /> component
-  const searchPosts = (searchTerm: string) => {
-    const filteredPosts = formattedPosts.filter((post) =>
-      post.data.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    return filteredPosts;
-  };
+const SearchComponent = () => {
+  const [data, setData] = useState([]);
 
-  // let's try this with a tsx file react integration
-  // const search = document.getElementById("search");
-  const searchHandler = (e) => {
-    const searchTerm = e.target.value;
-    const filteredPosts = searchPosts(searchTerm);
-    console.log(filteredPosts);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/slugs.json");
+        const jsonData = await response.json();
+        setData(jsonData);
+        console.log("Data fetched:", jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [data]);
 
   return (
     <div>
-      <input
-        type="search"
-        name="search"
-        id="search"
-        onKeyUp={(e) => searchHandler(e)}
-      />
+      <h1>Search Component</h1>
+      <ul>
+        {data.map((item, index) => (
+          <li key={index}>
+            <p>Title: {item.title}</p>
+            <p>Slug: {item.slug}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
+
+export default SearchComponent;
