@@ -6,8 +6,6 @@ import { Image } from "@astrojs/image/components";
 import Link from "../components/Link.astro";
 import CategoryCloud from "../components/CategoryCloud.astro";
 import ShowPosts from "../components/ShowPosts";
-import SearchPosts from "../components/SearchPosts";
-import Counter from "../components/Counter";
 
 // const post1 = await getEntryBySlug("blog", "post-1");
 // utils imports
@@ -22,8 +20,6 @@ const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts, {
 ---
 
 <MainLayout title="Home">
-  <Counter client:load />
-  <SearchPosts client:load />
   <ShowPosts client:load />
   <!-- <PostTest client:visible /> -->
   <section class="container about" aria-label="About me">
