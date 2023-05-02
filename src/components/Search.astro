@@ -13,7 +13,6 @@
       const response = await fetch("/slugs.json");
       const jsonData = await response.json();
       data = jsonData.posts; // Assuming the fetched data contains a "posts" property
-      console.log(`data: `, data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -23,7 +22,6 @@
     const searchResultElement = document.querySelector("#searchResult");
     let htmlString = "";
     if (result && result.length > 0) {
-      console.log(`result: `, result);
       result.forEach((item) => {
         htmlString += `<a href=${item.slug}>${item.title}</a><br />`;
       });
@@ -34,7 +32,6 @@
   };
 
   const searchPosts = (searchTerm) => {
-    console.log(`searchTerm: `, searchTerm);
     const filteredPosts = data.reduce((acc, post) => {
       const { title, slug, description, content } = post;
       if (
@@ -46,7 +43,7 @@
       }
       return acc;
     }, []);
-    console.log(`filteredPosts: `, filteredPosts);
+
     renderSearchResult(filteredPosts);
   };
   const handleChange = (event) => {

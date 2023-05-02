@@ -9,9 +9,12 @@ const SearchComponent = () => {
         const response = await fetch("/slugs.json");
         const jsonData = await response.json();
         setData(jsonData);
-        console.log("Data fetched:", jsonData);
+        console.log("Data fetched from React Search Component:", jsonData);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error(
+          "Error fetching data from React Search Component:",
+          error
+        );
       }
     };
 

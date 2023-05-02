@@ -5,7 +5,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import { Image } from "@astrojs/image/components";
 import Link from "../components/Link.astro";
 import CategoryCloud from "../components/CategoryCloud.astro";
-import Search from "../components/Search.astro";
+import ShowPosts from "../components/ShowPosts";
 
 // const post1 = await getEntryBySlug("blog", "post-1");
 // utils imports
@@ -20,6 +20,8 @@ const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts, {
 ---
 
 <MainLayout title="Home">
+  <ShowPosts client:load />
+  <!-- <PostTest client:visible /> -->
   <section class="container about" aria-label="About me">
     <Image
       src="/images/avatar.png"
