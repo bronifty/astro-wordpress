@@ -1,9 +1,10 @@
 import React from "react";
-import { searchTerm } from "../store/posts";
+import { searchTermTest } from "../store/posts";
 
 const SearchPosts = () => {
   const handleChange = async (event) => {
-    return searchTerm.set(event.target.value);
+    console.log("searchTermTest inside SearchPosts: ", searchTermTest);
+    return searchTermTest.set(event.target.value);
   };
 
   return (
