@@ -13,6 +13,9 @@ export interface Post {
 
 export const postsArray = atom<Post[]>([]);
 export const searchTerm = atom<string>("");
+if (!import.meta.env.SSR) {
+  window.searchTerm = searchTerm;
+}
 
 if (!import.meta.env.SSR) {
   (async () => {

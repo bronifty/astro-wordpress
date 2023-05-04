@@ -16,8 +16,12 @@ import SearchPosts from "./SearchPosts";
     <a href="/" data-navLink aria-label="Go home">
       <Icon name="avatar" width="60" />
     </a>
-    <input id="search_posts" type="text" placeholder="Search posts" />
-    <script src="./search-posts.ts"></script>
+    <input
+      id="search_posts"
+      type="text"
+      placeholder="Search posts"
+      oninput="javascript:(searchTerm.set(arguments[0].target.value))"
+    />
     <ul>
       {
         navData.map((item) => (
