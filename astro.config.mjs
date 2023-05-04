@@ -3,7 +3,6 @@ import mdx from "@astrojs/mdx";
 import image from "@astrojs/image";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 
 import partytown from "@astrojs/partytown";
@@ -15,7 +14,7 @@ export default defineConfig({
   site: "https://blog.bronifty.xyz",
   integrations: [mdx(), image({
     serviceEntryPoint: "@astrojs/image/sharp"
-  }), react(), sitemap(), tailwind(), partytown()],
+  }), react(), sitemap(), partytown()],
   vite: {
     server: {
       watch: {
