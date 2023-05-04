@@ -1,10 +1,11 @@
 import React from "react";
 import { useStore } from "@nanostores/react";
-import { filteredPosts } from "../store/posts";
+import { searchTerm, filterPosts } from "../store/posts";
 import PostCard from "./PostCard";
 
 const ShowPosts = () => {
-  const posts = useStore(filteredPosts);
+  const search = useStore(searchTerm);
+  const posts = filterPosts(search);
   return (
     <>
       {posts.length > 0 && (

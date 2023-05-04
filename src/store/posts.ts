@@ -1,5 +1,5 @@
 // store/posts.ts
-import { atom, computed } from "nanostores";
+import { atom } from "nanostores";
 
 export interface Post {
   title: string;
@@ -22,20 +22,19 @@ if (!import.meta.env.SSR) {
   })();
 }
 
-export const filteredPosts = computed(searchTerm, (search) => {
+export const filterPosts = (search: string) => {
   if (search === "") {
     return postsArray.get().filter((post) => post.title === "");
   }
+  const searchTerm = search.toLowerCase();
   return postsArray
     .get()
     .filter(
       (post) =>
-        post.title.toLowerCase().includes(searchTerm.get().toLowerCase()) ||
-        post.description
-          .toLowerCase()
-          .includes(searchTerm.get().toLowerCase()) ||
-        post.content.toLowerCase().includes(searchTerm.get().toLowerCase()) ||
-        post.author.toLowerCase().includes(searchTerm.get().toLowerCase()) ||
-        post.category.toLowerCase().includes(searchTerm.get().toLowerCase())
+        post.title.toLowerCase().includes(searchTerm) ||
+        post.description.toLowerCase().includes(searchTerm) ||
+        post.content.toLowerCase().includes(searchTerm) ||
+        post.author.toLowerCase().includes(searchTerm) ||
+        post.category.toLowerCase().includes(searchTerm)
     );
-});
+};
