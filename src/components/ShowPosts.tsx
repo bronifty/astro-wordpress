@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "@nanostores/react";
-import { searchTerm, Post, postsArray } from "../store/posts";
+import { searchTerm, Post } from "../store/posts";
 import PostCard from "./PostCard";
 
 const filterPosts = (search: string, unfilteredPosts: Post[]) => {
@@ -18,10 +18,9 @@ const filterPosts = (search: string, unfilteredPosts: Post[]) => {
   );
 };
 
-const ShowPosts = () => {
+const ShowPosts = (props: { posts: Post[] }) => {
   const search = useStore(searchTerm);
-  const unfiltered = useStore(postsArray);
-  const posts = filterPosts(search, unfiltered);
+  const posts = filterPosts(search, props.posts);
   return (
     <>
       {posts.length > 0 && (

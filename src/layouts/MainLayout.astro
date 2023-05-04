@@ -3,6 +3,7 @@
 import HeadLayout from "./HeadLayout.astro";
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
+import { getPosts } from "../pages/slugs.json";
 
 // styles import
 import "../styles/tailwind.css";
@@ -22,7 +23,7 @@ const {
   <HeadLayout {title} {description} {image} {data} {robots} />
   <body>
     <Nav />
-    <ShowPosts client:load />
+    <ShowPosts posts={await getPosts()} client:load />
     <main>
       <slot>Default Text</slot>
     </main>
