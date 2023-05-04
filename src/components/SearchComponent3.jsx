@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Fuse from "fuse.js";
 import { useStore } from "@nanostores/react";
-import { atomQuery } from "../store/posts";
+import { atomQuery, atomFuse } from "../store/fuse";
 
 // Fuse.js options
 const options = {
@@ -12,23 +12,23 @@ const options = {
 const SearchComponent3 = () => {
   // state to store data from API
   // state to store Fuse.js instance
-  const [fuse, setFuse] = useState(null);
+  // const [fuse, setFuse] = useState(null);
   // state to store search query
-  const [searchQuery, setSearchQuery] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
   const atomQueryStore = useStore(atomQuery);
   // state to store search results
   const [searchResults, setSearchResults] = useState([]);
 
-  const getSlugs = async () => {
-    const response = await fetch("/slugs.json");
-    const data = await response.json();
-    console.log(data.posts);
-    setFuse(new Fuse(data.posts, options));
-  };
+  // const getSlugs = async () => {
+  //   const response = await fetch("/slugs.json");
+  //   const data = await response.json();
+  //   console.log(data.posts);
+  //   setFuse(new Fuse(data.posts, options));
+  // };
 
-  React.useEffect(() => {
-    getSlugs();
-  }, []);
+  // React.useEffect(() => {
+  //   getSlugs();
+  // }, []);
 
   // Handle search query changes
   const handleSearchChange = (e) => {
@@ -42,7 +42,7 @@ const SearchComponent3 = () => {
       setSearchResults([]);
       return;
     }
-    const results = fuse.search(atomQueryStore);
+    const results = atomFuse.get().search(atomQueryStore);
     setSearchResults(results.map((res) => res.item));
   };
 
