@@ -23,8 +23,9 @@ export const searchTermTest = atom<string>("");
 export const postsArray = atom<Post[]>([]);
 
 // using in fuse component
+export const atomFuse = atom<{}>({});
 export const atomQuery = atom<string>("");
-export const atomFuse = atom<Object>({});
+export const atomQueryResult = atom<{}[]>([]);
 
 // load the postsArray when we are on the client
 // canonical astro code is: if (!import.meta.env.SSR) { ... }
