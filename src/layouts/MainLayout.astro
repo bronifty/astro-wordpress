@@ -9,6 +9,7 @@ import "../styles/global.css";
 import ShowPosts from "../components/ShowPosts";
 import SearchBar from "../components/SearchBar.astro";
 import SearchComponent from "../components/SearchComponent";
+import SearchComponent2 from "../components/SearchComponent2";
 
 const {
   title = "My Astro Blog",
@@ -26,6 +27,7 @@ const {
     <ShowPosts client:load />
     <SearchBar />
     <SearchComponent client:load />
+    <SearchComponent2 client:load />
     <main>
       <slot>Default Text</slot>
     </main>

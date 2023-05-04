@@ -1,39 +1,31 @@
 import React, { useState } from "react";
 import Fuse from "fuse.js";
 
-const SearchComponent = () => {
-  const [stateData, setStateData] = useState([]);
-  // Sample data set
-  // const data = [
-  //   { title: "The Alchemist", author: "Paulo Coelho" },
-  //   { title: "The Catcher in the Rye", author: "J.D. Salinger" },
-  //   { title: "To Kill a Mockingbird", author: "Harper Lee" },
-  //   // Add more data here...
-  // ];
-  let fuse;
-  // Fuse.js options
-  const options = {
-    keys: ["title", "author"],
-    threshold: 0.3,
-  };
+// Fuse.js options
+const options = {
+  keys: ["title", "author", "category", "content", "description"],
+  threshold: 0.3,
+};
+
+const SearchComponent2 = () => {
+  // state to store data from API
+  // state to store Fuse.js instance
+  const [fuse, setFuse] = useState(null);
+  // state to store search query
+  const [searchQuery, setSearchQuery] = useState("");
+  // state to store search results
+  const [searchResults, setSearchResults] = useState([]);
+
   const getSlugs = async () => {
     const response = await fetch("/slugs.json");
     const data = await response.json();
     console.log(data.posts);
-    fuse = new Fuse(data.posts, options);
+    setFuse(new Fuse(data.posts, options));
   };
 
   React.useEffect(() => {
-    const fuse = new Fuse(stateData, options);
     getSlugs();
   }, []);
-
-  // Initialize Fuse.js instance
-
-  // State to store search query
-  const [searchQuery, setSearchQuery] = useState("");
-  // State to store search results
-  const [searchResults, setSearchResults] = useState([]);
 
   // Handle search query changes
   const handleSearchChange = (e) => {
@@ -79,4 +71,4 @@ const SearchComponent = () => {
   );
 };
 
-export default SearchComponent;
+export default SearchComponent2;
