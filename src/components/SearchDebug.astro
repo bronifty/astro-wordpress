@@ -2,11 +2,4 @@
 ---
 
 <span id="search_debug">123</span>
-<script>
-  setTimeout(() => {
-    document.getElementById("search_debug").innerHTML = "456";
-    searchTerm.subscribe((value) => {
-      document.querySelector("#search_debug").textContent = value;
-    });
-  }, 1000);
-</script>
+<script src="./search-debug.ts"></script>
