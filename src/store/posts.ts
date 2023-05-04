@@ -14,6 +14,14 @@ export interface Post {
 export const postsArray = atom<Post[]>([]);
 export const searchTerm = atom<string>("");
 
+if (!import.meta.env.SSR) {
+  (async () => {
+    const res = await fetch("/slugs.json");
+    const data = await res.json();
+    return postsArray.set(data.posts);
+  })();
+}
+
 export const filteredPosts = computed(searchTerm, (search) => {
   if (search === "") {
     return postsArray.get().filter((post) => post.title === "");
