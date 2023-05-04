@@ -12,6 +12,7 @@ import SearchBar from "../components/SearchBar.astro";
 // import SearchComponent2 from "../components/SearchComponent2";
 // import SearchComponent3 from "../components/SearchComponent3";
 import SearchComponentForm from "../components/SearchComponentForm";
+import SearchComponentResult from "../components/SearchComponentResult";
 
 const {
   title = "My Astro Blog",
@@ -32,6 +33,7 @@ const {
     <SearchComponent2 client:load />
     <SearchComponent3 client:load /> -->
     <SearchComponentForm client:load />
+    <SearchComponentResult client:load />
 
     <main>
       <slot>Default Text</slot>

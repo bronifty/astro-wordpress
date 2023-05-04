@@ -51,6 +51,7 @@ const SearchComponentForm = () => {
 
   return (
     <div>
+      <h1>SearchComponentForm</h1>
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -60,7 +61,7 @@ const SearchComponentForm = () => {
         />
         <button type="submit">Search</button>
       </form>
-      <div>
+      {/* <div>
         {atomQueryResultStore.length === 0 ? (
           <p>No results found</p>
         ) : (
@@ -72,7 +73,7 @@ const SearchComponentForm = () => {
             ))}
           </ul>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
