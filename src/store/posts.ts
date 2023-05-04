@@ -13,6 +13,7 @@ export interface Post {
 
 export const postsArray = atom<Post[]>([]);
 export const searchTermTest = atom<string>("");
+export const atomQuery = atom<string>("");
 
 // load the postsArray when we are on the client
 // canonical astro code is: if (!import.meta.env.SSR) { ... }
