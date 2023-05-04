@@ -21,20 +21,3 @@ if (!import.meta.env.SSR) {
     return postsArray.set(data.posts);
   })();
 }
-
-export const filterPosts = (search: string) => {
-  if (search === "") {
-    return postsArray.get().filter((post) => post.title === "");
-  }
-  const searchTerm = search.toLowerCase();
-  return postsArray
-    .get()
-    .filter(
-      (post) =>
-        post.title.toLowerCase().includes(searchTerm) ||
-        post.description.toLowerCase().includes(searchTerm) ||
-        post.content.toLowerCase().includes(searchTerm) ||
-        post.author.toLowerCase().includes(searchTerm) ||
-        post.category.toLowerCase().includes(searchTerm)
-    );
-};

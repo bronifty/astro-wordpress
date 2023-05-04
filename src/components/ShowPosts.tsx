@@ -1,11 +1,27 @@
 import React from "react";
 import { useStore } from "@nanostores/react";
-import { searchTerm, filterPosts } from "../store/posts";
+import { searchTerm, Post, postsArray } from "../store/posts";
 import PostCard from "./PostCard";
+
+const filterPosts = (search: string, unfilteredPosts: Post[]) => {
+  if (search === "") {
+    return unfilteredPosts.filter((post) => post.title === "");
+  }
+  const searchTerm = search.toLowerCase();
+  return unfilteredPosts.filter(
+    (post) =>
+      post.title.toLowerCase().includes(searchTerm) ||
+      post.description.toLowerCase().includes(searchTerm) ||
+      post.content.toLowerCase().includes(searchTerm) ||
+      post.author.toLowerCase().includes(searchTerm) ||
+      post.category.toLowerCase().includes(searchTerm)
+  );
+};
 
 const ShowPosts = () => {
   const search = useStore(searchTerm);
-  const posts = filterPosts(search);
+  const unfiltered = useStore(postsArray);
+  const posts = filterPosts(search, unfiltered);
   return (
     <>
       {posts.length > 0 && (
