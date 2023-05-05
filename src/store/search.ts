@@ -32,7 +32,6 @@ const fetchData = async () => {
     const response = await fetch("/slugs.json");
     const jsonData = await response.json();
     data = jsonData.posts; // Assuming the fetched data contains a "posts" property
-    console.log(data);
     posts.set(data);
   } catch (error) {
     console.error("Error fetching data:", error);

@@ -1,0 +1,10 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import Search from './Search';
+const { formatBlogPosts } = await import("../js/utils.js");
+const allPosts = await getCollection("blog", ({ data }) => {
+  return !data.draft && data.date < new Date();
+});
+const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts);
+---
+<Search client:load searchList={formattedPosts}></Search>

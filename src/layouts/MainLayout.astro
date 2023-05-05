@@ -7,6 +7,12 @@ import Nav from "../components/Nav.astro";
 // styles import
 import "../styles/global.css";
 import ShowPosts from "../components/ShowPosts";
+import SearchBar from "../components/SearchBar.astro";
+// import SearchComponent from "../components/SearchComponent";
+// import SearchComponent2 from "../components/SearchComponent2";
+// import SearchComponent3 from "../components/SearchComponent3";
+import SearchComponentForm from "../components/SearchComponentForm";
+import SearchComponentResult from "../components/SearchComponentResult";
 
 const {
   title = "My Astro Blog",
@@ -21,11 +27,10 @@ const {
   <HeadLayout {title} {description} {image} {data} {robots} />
   <body>
     <Nav />
-    <ShowPosts client:load />
+    <SearchComponentResult client:load />
     <main>
       <slot>Default Text</slot>
     </main>
-
     <Footer />
   </body>
 </html>

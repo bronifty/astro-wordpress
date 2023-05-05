@@ -1,5 +1,12 @@
 // store/posts.ts
 import { atom, computed } from "nanostores";
+import Fuse from "fuse.js";
+
+// Fuse.js options
+const options = {
+  keys: ["title", "author", "category", "content", "description"],
+  threshold: 0.3,
+};
 
 export interface Post {
   title: string;
@@ -11,33 +18,27 @@ export interface Post {
   slug: string;
 }
 
-export const postsArray = atom<Post[]>([]);
+// using in other components
 export const searchTermTest = atom<string>("");
+export const postsArray = atom<Post[]>([]);
+
+// using in fuse component
+export const atomFuse = atom<{}>({});
 export const atomQuery = atom<string>("");
+export const atomQueryResult = atom<{}[]>([]);
 
 // load the postsArray when we are on the client
 // canonical astro code is: if (!import.meta.env.SSR) { ... }
-if (typeof window !== "undefined") {
-  // if (!import.meta.env.SSR) {
+// if (typeof window !== "undefined") {
+let fuse;
+if (!import.meta.env.SSR) {
   (async () => {
     const res = await fetch("/slugs.json");
     const data = await res.json();
+    atomFuse.set(new Fuse(data.posts, options));
     return postsArray.set(data.posts);
   })();
 }
-
-const localPostsArray = [
-  {
-    title: "Post 1",
-    author: "Brother Nifty",
-    category: "life",
-    date: "2023-04-21T00:00:00.000Z",
-    description: "This is the first post",
-    content:
-      "\n## Heading 1\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Totam pariatur reprehenderit rerum nulla est eius similique adipisci dolor dolores. Quo in nisi facere error corporis dolorum, nesciunt dolor dicta! Esse!\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Totam pariatur reprehenderit rerum nulla est eius similique adipisci dolor dolores. Quo in nisi facere error corporis dolorum, nesciunt dolor dicta! Esse!\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Totam pariatur reprehenderit rerum nulla est eius similique adipisci dolor dolores. Quo in nisi facere error corporis dolorum, nesciunt dolor dicta! Esse!\n",
-    slug: "/blog/post-1",
-  },
-];
 
 // filter the postsArray
 // export const filterPosts = (posts: Post[], searchTerm: string) => {
