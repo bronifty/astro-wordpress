@@ -27,18 +27,10 @@ const {
   <HeadLayout {title} {description} {image} {data} {robots} />
   <body>
     <Nav />
-    <!-- <ShowPosts client:load />
-    <SearchBar />
-    <SearchComponent client:load />
-    <SearchComponent2 client:load />
-    <SearchComponent3 client:load /> -->
-    <SearchComponentForm client:load />
     <SearchComponentResult client:load />
-
     <main>
       <slot>Default Text</slot>
     </main>
-
     <Footer />
   </body>
 </html>

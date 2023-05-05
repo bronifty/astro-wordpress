@@ -7,23 +7,18 @@ const SearchComponentResult = () => {
 
   return (
     <div>
+      <h1>SearchComponentResult</h1>
       <div>
         {atomQueryResultStore.length === 0 ? (
-          <>
-            <h1></h1>
-            <p></p>
-          </>
+          <p>No results found</p>
         ) : (
-          <>
-            <h1>SearchComponentResult</h1>
-            <ul>
-              {atomQueryResultStore.map((item, index) => (
-                <li key={index}>
-                  {item.title} by {item.author}
-                </li>
-              ))}
-            </ul>
-          </>
+          <ul>
+            {atomQueryResultStore.map((item, index) => (
+              <li key={index}>
+                {item.title} by {item.author}
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </div>
