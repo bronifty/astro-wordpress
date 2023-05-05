@@ -1,6 +1,7 @@
 import React from "react";
 import { useStore } from "@nanostores/react";
 import { atomQueryResult } from "../store/fuse";
+import PostCard from "./PostCard";
 
 const SearchComponentResult = () => {
   const atomQueryResultStore = useStore(atomQueryResult);
@@ -10,16 +11,21 @@ const SearchComponentResult = () => {
       <div>
         {atomQueryResultStore.length === 0 ? (
           <>
-            <h1></h1>
-            <p></p>
+            <ul></ul>
           </>
         ) : (
           <>
-            <h1>SearchComponentResult</h1>
             <ul>
-              {atomQueryResultStore.map((item, index) => (
-                <li key={index}>
-                  {item.title} by {item.author}
+              {atomQueryResultStore.map((post, idx) => (
+                <li key={idx}>
+                  <PostCard
+                    title={post.title}
+                    author={post.author}
+                    category={post.category}
+                    date={post.date}
+                    description={post.description}
+                    slug={post.slug}
+                  />
                 </li>
               ))}
             </ul>

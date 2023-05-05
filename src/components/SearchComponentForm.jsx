@@ -14,6 +14,9 @@ const SearchComponentForm = () => {
 
   const handleAtomQueryChange = (e) => {
     atomQuery.set(e.target.value);
+    const results = atomFuse.get().search(atomQuery.get());
+    // const results = atomFuse.get().search(e.target.value);
+    atomQueryResult.set(results.map((res) => res.item));
   };
 
   const handleSearch = (e) => {
@@ -29,8 +32,7 @@ const SearchComponentForm = () => {
   };
 
   return (
-    <div>
-      <h1>SearchComponentForm</h1>
+    <>
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -38,9 +40,9 @@ const SearchComponentForm = () => {
           onChange={handleAtomQueryChange}
           placeholder="Search..."
         />
-        <button type="submit">Search</button>
+        <button type="submit" hidden></button>
       </form>
-    </div>
+    </>
   );
 };
 

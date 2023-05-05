@@ -17,8 +17,8 @@ export const atomQuery = atom<string>("");
 
 // load the postsArray when we are on the client
 // canonical astro code is: if (!import.meta.env.SSR) { ... }
-// if (typeof window !== "undefined") {
-if (!import.meta.env.SSR) {
+if (typeof window !== "undefined") {
+  // if (!import.meta.env.SSR) {
   (async () => {
     const res = await fetch("/slugs.json");
     const data = await res.json();
