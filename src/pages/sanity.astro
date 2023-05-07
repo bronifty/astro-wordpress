@@ -4,7 +4,7 @@ import { Image } from "@astrojs/image/components";
 import Link from "../components/Link.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 // import { resultExport } from "../lib";
-import {  getAllSanityPosts } from "../lib";
+import { getAllSanityPosts } from "../lib";
 const data = await getAllSanityPosts();
 ---
 
@@ -12,15 +12,15 @@ const data = await getAllSanityPosts();
   <section class="container about" aria-label="About me">
     <h1>Sanity</h1>
     <ul>
-      { data ? 
+      <!-- { data ? 
         data?.map(({name, animal, breed}) => 
           ( <li>{name}</li>
            <li>{animal}</li>
            <li>{breed}</li>
            )
         ) : <li>...loading</li>
-      }
-  
+      } -->
     </ul>
+    {JSON.stringify(data, null, 2)}
   </section>
 </MainLayout>

@@ -2,13 +2,15 @@ import dotenv from "dotenv";
 dotenv.config();
 const PROJECT_ID = process.env.SANITY_PROJECT_ID;
 let DATASET = "production";
-let QUERY = encodeURIComponent('*[_type == "pet"]');
+let QUERY = encodeURIComponent('*[_type == "post"]');
 let PROJECT_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
 
 export async function getAllSanityPosts() {
-  const data = await fetch(PROJECT_URL).then((res) => res.json());
-  console.log("data inside of getAllSanityPosts: ", data);
-  return data?.result;
+  const res = await fetch(PROJECT_URL);
+  const resJSON = await res.json();
+  console.log("resJSON: ", resJSON.result);
+
+  return resJSON.result;
 }
 
 // let resultExport = null;
