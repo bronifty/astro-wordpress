@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-const API_URL = process.env.WP_URL;
+const API_URL = process.env.WORDPRESS_URL;
 
 async function fetchAPI(query, { variables } = {}) {
   const headers = { "Content-Type": "application/json" };
