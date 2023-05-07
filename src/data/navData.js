@@ -7,6 +7,14 @@ const navData = [
     name: "Blog",
     path: "/blog/",
   },
+  {
+    name: "WP",
+    path: "/wordpress/",
+  },
+  {
+    name: "Sanity",
+    path: "/sanity/",
+  },
 ];
 
 export default navData;

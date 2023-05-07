@@ -1,0 +1,13 @@
+---
+// component imports
+import { Image } from "@astrojs/image/components";
+import Link from "../components/Link.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import { resultExport } from "../lib";
+---
+
+<MainLayout title="About">
+  <section class="container about" aria-label="About me">
+    {JSON.stringify(resultExport, null, 2)}
+  </section>
+</MainLayout>
