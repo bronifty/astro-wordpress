@@ -3,11 +3,24 @@
 import { Image } from "@astrojs/image/components";
 import Link from "../components/Link.astro";
 import MainLayout from "../layouts/MainLayout.astro";
-import { resultExport } from "../lib";
+// import { resultExport } from "../lib";
+import {  getAllSanityPosts } from "../lib";
+const data = await getAllSanityPosts();
 ---
 
 <MainLayout title="About">
   <section class="container about" aria-label="About me">
-    {JSON.stringify(resultExport, null, 2)}
+    <h1>Sanity</h1>
+    <ul>
+      { data ? 
+        data?.map(({name, animal, breed}) => 
+          ( <li>{name}</li>
+           <li>{animal}</li>
+           <li>{breed}</li>
+           )
+        ) : <li>...loading</li>
+      }
+  
+    </ul>
   </section>
 </MainLayout>

@@ -11,12 +11,15 @@ const data = await getAllPosts();
   <section class="container about" aria-label="About me">
     <h1>WP</h1>
     <ul>
-      { data ? 
+      { data ? (
         data?.map(({node: {title, slug, content}}) => 
           ( <li>{title}</li>
            <li>{slug}</li>
-           <li>{content}</li>)
-        ) : <li>...loading</li>
+           <div set:html={content}></div>
+        )  
+        )) : (
+          <div>loading...</div>
+        )
       }
   
     </ul>
